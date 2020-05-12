@@ -200,7 +200,7 @@ export default class UsingACApp extends React.Component {
                   style={{ maxHeight: "50px" }}
                   alt=" "
                 />
-                <strong>Violation</strong>- accessibility failures that need to
+                <strong> Violation</strong> - accessibility failures that need to
                 be corrected.
               </li>
               <li>
@@ -219,7 +219,7 @@ export default class UsingACApp extends React.Component {
                   style={{ maxHeight: "50px" }}
                   alt=" "
                 />
-                <strong>Recommendation</strong> - opportunities to apply best
+                <strong> Recommendation</strong> - opportunities to apply best
                 practices to further improve accessibility.
               </li>
             </ul>
@@ -321,15 +321,12 @@ export default class UsingACApp extends React.Component {
             the following:
             <ul>
               <li>
-                IBM Accessibility April 2020 - Rules for Web Content Accessibility
-                Guidelines (WCAG ) 2.1 level A and level AA. This is the current
-                W3C recommendation and extends Web Content Accessibility
-                Guidelines 2.0. Content that conforms to WCAG 2.1 also conforms
-                to WCAG 2.0. This is the default option.
+                IBM Accessibility &lt;date&gt; - Rules for Web Content Accessibility
+                Guidelines (WCAG ) 2.1 level A and level AA plus
+                additional IBM checklist supplemental requirements. This is the default option.
               </li>
               <li>
-                IBM Accessibility Experimental - Rules for WCAG 2.1 level A and level AA plus
-                additional IBM checklist supplemental requirements.
+                IBM Accessibility Experimental - Potential new rules in Beta.
               </li>
             </ul>
           </div>
@@ -510,7 +507,7 @@ export default class UsingACApp extends React.Component {
                     highlighted or opened.
                   </li>
                   <li>
-                    Use the ‘Report’ button to download a standalone html report
+                    Use the <strong>‘Report’</strong> button to download a standalone html report
                     that includes the same three views and all the help
                     information provided in the checker.
                   </li>
@@ -550,10 +547,6 @@ export default class UsingACApp extends React.Component {
                     </ul>
                   </li>
                   <li>
-                    Open the ‘Elements’ panel (Chrome) or ‘Inspector’ panel
-                    (Firefox).
-                  </li>
-                  <li>
                     Select the <strong>'Accessibility Assessment'</strong>{" "}
                     panel:{" "}
                     <img
@@ -569,11 +562,13 @@ export default class UsingACApp extends React.Component {
                   <li>
                     By default, the results display by the{" "}
                     <strong>'Checklist'</strong> checkpoints with a breakdown of
-                    the total number of issues found by violation level.
+                    the total number of issues found by category. 
                   </li>
                   <li>
                     The right panel displays an Accessibility Checker Report
-                    summary:{" "}
+                    summary, while the left panel shows the scan result with the total number of issues found,
+                    with individual counts for violations, items that need
+                    review, and recommendations:{" "}
                     <img
                       src="assets/img/assessReport.png"
                       alt="Accessibility Checker report screenshot"
@@ -581,9 +576,7 @@ export default class UsingACApp extends React.Component {
                     />
                   </li>
                   <li>
-                    The scan result displays the total number of issues found
-                    with individual counts for violations, items that need
-                    review, and recommendations. By default, issues are shown in
+                    By default, issues are shown in
                     the 'Checklist' view, while ‘Element roles’ and ‘Rules’ tabs
                     are also available. All views show the same set of issues.
                   </li>
@@ -596,8 +589,8 @@ export default class UsingACApp extends React.Component {
                         checkpoint.
                       </li>
                       <li>
-                        oSelect an instance of an issue and the report summary
-                        is replaced with help text that shows the error level,
+                        Select an instance of an issue and the report summary
+                        is replaced with a detailed description that shows the error level,
                         why the content is failing, what is the requirement with
                         resource links, explains what to do to fix the issue,
                         who it affects, and why it is important:{" "}
@@ -614,7 +607,7 @@ export default class UsingACApp extends React.Component {
                     <ul>
                       <li>
                         Select the <strong>'Element roles'</strong> tab to view
-                        the scan results for each element in the web page.
+                        the scan results organized by element roles in the web page.
                       </li>
                       <li>
                         Expand an element role to view the issues for that
@@ -625,7 +618,7 @@ export default class UsingACApp extends React.Component {
                         <ul>
                           <li>Highlight the issue.</li>
                           <li>
-                            View the help text for that issue in the summary
+                            View the detailed description for that issue in the summary
                             pane (on the left).
                           </li>
                         </ul>
@@ -645,7 +638,7 @@ export default class UsingACApp extends React.Component {
                         <ul>
                           <li>Highlight the issue.</li>
                           <li>
-                            View the help text for that issue in the summary
+                            View the detailed description for that issue in the summary
                             pane (on the left).
                           </li>
                         </ul>
@@ -665,8 +658,7 @@ export default class UsingACApp extends React.Component {
                 <div>
                   {" "}
                   By default the tool skips content that is hidden (Web pages
-                  that use the
-                  <var>visibility:hidden</var> or <var>display:none</var>{" "}
+                  that use the <var>visibility:hidden</var> or <var>display:none</var>{" "}
                   elements), if this content gets displayed to the user at any
                   point, the user must test the web content by fully exercising
                   the user interface according to the usage scenarios in the
@@ -714,9 +706,8 @@ export default class UsingACApp extends React.Component {
             can save as an HTML file for future use. It includes the report scan
             date and time, URL, and a summary of test results followed by the
             issue details organized by checklist checkpoint, by Element roles
-            and by rules. Each instance of an issue also includes a
-            <strong>'Learn more'</strong> link that opens an overlay containing
-            additional help text.
+            and by rules. Each instance of an issue also includes a <strong>'Learn more'</strong> link that opens an overlay containing
+            a more detailed description.
           </p>
 
           <p>
