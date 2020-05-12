@@ -409,58 +409,35 @@ export default class UsingACApp extends React.Component {
                   </li>
                   <li>
                     Element roles tab:
+                    <ul>
+                      <li>
+                        Select an instance of an issue, or an element in the document object model (DOM), or
+                        use the ‘Inspect element’ command on the web page to:
+                        <ul>
+                          <li>
+                            Highlight the selected element, or the element containing the selected issue, in the
+                            document object model (DOM) in the browser's
+                            Elements panel and its location in the web page.
+                          </li>
+                          <li>
+                            See summary counts showing the number of issues of
+                            each type within the selected element and its
+                            children.
+                          </li>
+                          <li>
+                            Open and highlight all issues in the element, if any
+                            (purple highlight).
+                          </li>
+                          <li>
+                            Open and highlight all issues in the element's
+                            children, if any (light purple highlight).
+                          </li>
+                        </ul>
                     <img
                       src="assets/img/checkResults.png"
                       alt="Accessibility Checker results screenshot"
                       className="responsive"
                     />
-                    <ul>
-                      <li>
-                        Select an element in the document object model (DOM), or
-                        use the ‘Inspect element’ command on the web page to:
-                        <ul>
-                          <li>
-                            Highlight the code that contains the issue in the
-                            document object model (DOM) in the browser's
-                            Elements panel and its location in the web page.
-                          </li>
-                          <li>
-                            Update the summary counts to show how many issues of
-                            each type are within the selected element and its
-                            children.
-                          </li>
-                          <li>
-                            Open and highlight all issues in the element, if any
-                            (purple highlight)
-                          </li>
-                          <li>
-                            Open and highlight all issues in the element's
-                            child, if any (light purple highlight).
-                          </li>
-                        </ul>
-                      </li>
-                      <li>
-                        Select an instance of an issue to:
-                        <ul>
-                          <li>
-                            Highlight the element that contains the issue in the
-                            document object model (DOM ) under the browser's
-                            Elements panel and its location in the web page.
-                          </li>
-                          <li>
-                            Update the summary counts to show how many issues of
-                            each type are within the highlighted element and its
-                            children.
-                          </li>
-                          <li>
-                            Open and highlight the issue, and all other issues
-                            in the same element, if any (purple highlight).
-                          </li>
-                          <li>
-                            Open and highlight issues in the element's child, if
-                            any (light purple  highlight).
-                          </li>
-                        </ul>
                       </li>
                     </ul>
                   </li>
@@ -475,7 +452,7 @@ export default class UsingACApp extends React.Component {
                       <li>
                         Select an element or an instance of an issue to
                         highlight the same set of issues and child issues as in
-                        the 'Element roles’ tab. In this view, the issues will
+                        the ‘Element roles’ tab. In this view, the issues will
                         be shown within the relevant checkpoints.
                       </li>
                     </ul>
@@ -502,18 +479,18 @@ export default class UsingACApp extends React.Component {
                     issues in different views.
                   </li>
                   <li>
-                    Use the <strong>‘Reset’</strong> button to return the view
+                    Use the <strong>'Reset'</strong> button to return the view
                     to the way it was just after scanning, with no issues
                     highlighted or opened.
                   </li>
                   <li>
-                    Use the <strong>‘Report’</strong> button to download a standalone html report
+                    Use the <strong>'Report'</strong> button to download a standalone html report
                     that includes the same three views and all the help
                     information provided in the checker.
                   </li>
                   <li>
                     Optionally, you can update the code in the browser's
-                    Elements panel and run 'Scan' again to confirm your code
+                    Elements panel and run <strong>'Scan'</strong> again to confirm your code
                     changes fix the issue.
                   </li>
                 </ol>
@@ -532,7 +509,7 @@ export default class UsingACApp extends React.Component {
                         ‘Developer’ and then select ‘Developer tools’, or{" "}
                       </li>
                       <li>
-                        in Firefox: From the browser ‘Tools menu, select ‘Web
+                        in Firefox: From the browser ‘Tools’ menu, select ‘Web
                         Developer’ and then select ‘Toggle Tools’, or
                       </li>
                       <li>
