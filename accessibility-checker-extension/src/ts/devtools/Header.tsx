@@ -23,6 +23,7 @@ import {
 import { Reset16 } from '@carbon/icons-react';
 // import { SettingsAdjust16 } from '@carbon/icons-react';
 import { ReportData16 } from '@carbon/icons-react';
+import { Filter16} from '@carbon/icons-react';
 
 const BeeLogo = "/assets/Bee_logo.svg";
 import Violation16 from "../../assets/Violation16.svg";
@@ -121,7 +122,8 @@ export default class Header extends React.Component<IHeaderProps, IHeaderState> 
                             onClick={() => this.sendShowIssueTypeData("Violations")}
                             style={this.props.dataFromParent[0] || this.props.dataFromParent[1] ? {fontWeight: 600} : {fontWeight: 400}}
                             aria-pressed = {this.props.dataFromParent[1]}
-                            aria-label= "Show only violations">
+                            aria-label= "Show only violations"
+                            renderIcon={Filter16}>
                             {noScan ? ((bDiff ? counts.filtered["Violation"] + "/" : "") + counts.total["Violation"]) : " "} Violations
                     </Button>
                 </div>
@@ -132,7 +134,8 @@ export default class Header extends React.Component<IHeaderProps, IHeaderState> 
                             onClick={() => this.sendShowIssueTypeData("NeedsReview")}
                             style={this.props.dataFromParent[0] || this.props.dataFromParent[2] ? {fontWeight: 600} : {fontWeight: 400}}
                             aria-pressed = {this.props.dataFromParent[2]}
-                            aria-label= "Show only needs review">
+                            aria-label= "Show only needs review"
+                            renderIcon={Filter16}>
                             {noScan ? ((bDiff ? counts.filtered["Needs review"] + "/" : "") + counts.total["Needs review"]) : " "} Needs review
                     </Button>
                 </div>
@@ -143,7 +146,8 @@ export default class Header extends React.Component<IHeaderProps, IHeaderState> 
                         onClick={() => this.sendShowIssueTypeData("Recommendations")}
                         style={this.props.dataFromParent[0] || this.props.dataFromParent[3] ? {fontWeight: 600} : {fontWeight: 400}}
                         aria-pressed = {this.props.dataFromParent[3]}
-                        aria-label= "Show only needs recommendations">
+                        aria-label= "Show only needs recommendations"
+                        renderIcon={Filter16}>
                         {noScan ? ((bDiff ? counts.filtered["Recommendation"] + "/" : "") + counts.total["Recommendation"]) : " "} Recommendations
                     </Button>
                 </div>
