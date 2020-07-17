@@ -17,7 +17,7 @@
 import React from "react";
 
 import {
-    Button
+    MultiSelect, Button
 } from 'carbon-components-react';
 
 import { Reset16 } from '@carbon/icons-react';
@@ -37,6 +37,7 @@ interface IHeaderProps {
     collapseAll: () => void,
     reportHandler: () => void,
     showIssueTypeCallback: (type:string) => void
+    showIssueTypeMenuCallback: (type:string[]) => void
     counts?: {
         "total": { [key: string]: number },
         "filtered": { [key: string]: number }
@@ -45,8 +46,29 @@ interface IHeaderProps {
     scanning: boolean
 }
 
+
+
 export default class Header extends React.Component<IHeaderProps, IHeaderState> {
     state: IHeaderState = {};
+
+    processSelectedIssueTypes (items:any) {
+        let newItems = ["", "", ""];
+        items.map((item:any) => {
+            if (item.id === "Violations") {
+                newItems[0] = "Violations";
+            } else if (item.id === "NeedsReview") {
+                newItems[1] = "NeedsReview";
+            } else if (item.id === "Recommendations") {
+                newItems[2] = "Recommendations";
+            }
+        })
+        if (items.length == 0) {
+            this.props.showIssueTypeMenuCallback(["Violations", "NeedsReview", "Recommendations"]);
+        }
+        if (items.length > 0) {
+            this.props.showIssueTypeMenuCallback([newItems[0], newItems[1], newItems[2]]);
+        }
+    }
         
     sendShowIssueTypeData(type:string) {
         this.props.showIssueTypeCallback(type);
@@ -55,6 +77,22 @@ export default class Header extends React.Component<IHeaderProps, IHeaderState> 
     render() {
         let counts = this.props.counts;
         let noScan = counts ? true : false;
+
+        const items = [
+            {
+                id: 'Violations',
+                label: 'Show Violations'
+            },
+            {
+                id: 'NeedsReview',
+                label: 'Show Needs Review'
+            },
+            {
+                id: 'Recommendations',
+                label: 'Show Recommendations'
+            }
+        ]
+
         if (this.props.scanning == true) {
             noScan = true;
         }
@@ -94,7 +132,26 @@ export default class Header extends React.Component<IHeaderProps, IHeaderState> 
                     <Button onClick={this.props.startScan.bind(this)} size="small" className="scan-button">Scan</Button>
                 </div>
                 <div className="bx--col-sm-2" style={{ position: "relative" }}>
-                    <div className="headerTools" >
+                    <div style={{display:"flex", justifyContent:"center"}}>
+                    
+                    <div style={{width:250}}>
+                    <MultiSelect
+                            items={items}
+                            onChange={(value) => this.processSelectedIssueTypes(value.selectedItems)}
+                            direction="bottom"
+                            disabled={false}
+                            id="Filter issues"
+                            initialSelectedItems={[items[0], items[1], items[2]]}
+                            invalidText="Invalid Selection"
+                            label="Filter issues"
+                            light={false}
+                            locale="en"
+                            open={false}
+                            selectionFeedback="top-after-reopen"
+                            size="sm"
+                            type="default"
+                        />
+                        </div>
                         <Button
                             disabled={!this.props.counts}
                             onClick={this.props.collapseAll}
@@ -109,6 +166,7 @@ export default class Header extends React.Component<IHeaderProps, IHeaderState> 
                         >
                             <ReportData16 className="my-custom-class" />
                         </Button>
+                    
                     </div>
                 </div>
             </div>
