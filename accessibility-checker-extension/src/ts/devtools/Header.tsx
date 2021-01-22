@@ -307,7 +307,6 @@ export default class Header extends React.Component<IHeaderProps, IHeaderState> 
                 </div>
             }
 
-            {console.log("layout = ", this.props.layout)}
             <div className="countRow summary" role="region" arial-label='Issue count'>
                 
                 <div className="countItem" style={{ paddingTop: "0", paddingLeft: "0", paddingBottom: "0", height: "34px", textAlign: "left", overflow: "visible" }}>
