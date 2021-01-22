@@ -174,7 +174,6 @@ $feature-flags: (
             font-weight: 600;
         }
 
-
         .summaryBarLabelsSub {
             display:none;
             
@@ -194,6 +193,23 @@ $feature-flags: (
         img, svg {
             margin-right: 6px;
             vertical-align: middle;
+        }
+    }
+}
+
+.mainPanel {
+    .summaryBarLabels {
+        display:none;
+        @media only screen and (min-width: 64rem) {
+            display:inline;
+        }
+    }
+}
+.subPanel {
+    .summaryBarLabels {
+        display:none;
+        @media only screen and (min-width: 43rem) {
+            display:inline;
         }
     }
 }

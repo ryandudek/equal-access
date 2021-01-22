@@ -154,7 +154,7 @@ export default class Header extends React.Component<IHeaderProps, IHeaderState> 
                     <img className="bee-logo" src={BeeLogo} alt="IBM Accessibility" />
                 </div>
             </div>
-
+            {/* Content for Checker Tab */}
             {this.props.layout === "sub" ?
                 <div className="bx--row" style={{ marginTop: '10px' }}>
                     <div className="bx--col-md-2" style={{ display: 'flex', alignContent: 'center' }}>
@@ -194,7 +194,7 @@ export default class Header extends React.Component<IHeaderProps, IHeaderState> 
                                 iconDescription="Reset" 
                                 type="button"
                             >
-                                <Reset16 className="my-custom-class" />
+                                <Reset16/>
                             </Button>
                             <Button
                                 disabled={!this.props.counts}
@@ -208,7 +208,7 @@ export default class Header extends React.Component<IHeaderProps, IHeaderState> 
                                 iconDescription="Reports" 
                                 type="button"
                             >
-                                <ReportData16 className="my-custom-class" />
+                                <ReportData16/>
                             </Button>
                         </div>
                     </div>
@@ -248,9 +248,9 @@ export default class Header extends React.Component<IHeaderProps, IHeaderState> 
 
                     </div>
                 </div>
+                // Content for the Assessment Tab
                 :
                 <div className="bx--row" style={{ marginTop: '10px' }}>
-
                     <div className="bx--col-sm-2" style={{ display: 'flex', alignContent: 'center' }}>
                         <Button disabled={this.props.scanning} renderIcon={Renew16} onClick={this.props.startScan.bind(this)} size="small" className="scan-button">Scan</Button>
                         {isLatestArchive ? "" : (
@@ -308,83 +308,86 @@ export default class Header extends React.Component<IHeaderProps, IHeaderState> 
             }
 
             <div className="countRow summary" role="region" arial-label='Issue count'>
-                
-                <div className="countItem" style={{ paddingTop: "0", paddingLeft: "0", paddingBottom: "0", height: "34px", textAlign: "left", overflow: "visible" }}>
-                    <span data-tip data-for="filterViolationsTip" style={{ display: "inline-block", verticalAlign: "middle", paddingTop: "4px", paddingRight: "8px" }}>
-                        <Checkbox 
-                            className="checkboxLabel"
-                            disabled={!this.props.counts}
-                            // title="Filter violations" // used react tooltip so all tooltips the same
-                            aria-label="Filter by violations"
-                            defaultChecked
-                            id="Violations"
-                            indeterminate={false}
-                            labelText={<React.Fragment><img src={Violation16} style={{ verticalAlign: "middle", paddingTop: "0px", marginRight: "4px" }} alt="Violations" /><span className="summaryBarCounts" >{noScan ? ((bDiff ? counts.filtered["Violation"] + "/" : "") + counts.total["Violation"]) : " "}<span className={(this.props.layout==="sub" ? "summaryBarLabelsSub" : "summaryBarLabelsMain")} style={{ marginLeft: "4px" }}>Violations</span></span></React.Fragment>}
-                            // hideLabel
-                            onChange={(value, id) => this.processFilterCheckBoxes(value, id)} // Receives three arguments: true/false, the checkbox's id, and the dom event.
-                            wrapperClassName="checkboxWrapper"
-                        />
-                        <ReactTooltip id="filterViolationsTip" place="top" effect="solid">
-                            Filter by Violations
-                        </ReactTooltip>
-                    </span>
-                </div>
-                
-                <div className="countItem" style={{ paddingTop: "0", paddingLeft: "0", paddingBottom: "0", height: "34px", textAlign: "left", overflow: "visible" }}>
-                    <span data-tip data-for="filterNeedsReviewTip" style={{ display: "inline-block", verticalAlign: "middle", paddingTop: "4px", paddingRight: "8px" }}>
-                        <Checkbox
-                            className="checkboxLabel"
-                            disabled={!this.props.counts}
-                            // title="Filter needs review"
-                            aria-label="Filter by needs review"
-                            defaultChecked
-                            id="NeedsReview"
-                            indeterminate={false}
-                            labelText={<React.Fragment><img src={NeedsReview16} style={{ verticalAlign: "middle", paddingTop: "0px", marginRight: "4px" }} alt="Needs review" /><span className="summaryBarCounts" >{noScan ? ((bDiff ? counts.filtered["Needs review"] + "/" : "") + counts.total["Needs review"]) : " "}<span className={(this.props.layout==="sub" ? "summaryBarLabelsSub" : "summaryBarLabelsMain")} style={{ marginLeft: "4px" }}>Needs review</span></span></React.Fragment>}
-                            // hideLabel
-                            onChange={(value, id) => this.processFilterCheckBoxes(value, id)} // Receives three arguments: true/false, the checkbox's id, and the dom event.
-                            wrapperClassName="checkboxWrapper"
-                        />
-                        <ReactTooltip id="filterNeedsReviewTip" place="top" effect="solid">
-                            Filter by Needs Review
-                        </ReactTooltip>
-                    </span>
-                </div>
-                <div className="countItem" style={{ paddingTop: "0", paddingLeft: "0", paddingBottom: "0", height: "34px", textAlign: "left", overflow: "visible" }}>
-                    <span data-tip data-for="filterRecommendationTip" style={{ display: "inline-block", verticalAlign: "middle", paddingTop: "4px", paddingRight: "8px" }}>
-                        <Checkbox
-                            className="checkboxLabel"
-                            disabled={!this.props.counts}
-                            // title="Filter recommendations"
-                            aria-label="Filter by recommendations"
-                            defaultChecked
-                            id="Recommendations"
-                            indeterminate={false}
-                            labelText={<React.Fragment><img src={Recommendation16} style={{ verticalAlign: "middle", paddingTop: "0px", marginRight: "4px" }} alt="Recommendations" /><span className="summaryBarCounts" >{noScan ? ((bDiff ? counts.filtered["Recommendation"] + "/" : "") + counts.total["Recommendation"]) : " "}<span className={(this.props.layout==="sub" ? "summaryBarLabelsSub" : "summaryBarLabelsMain")} style={{ marginLeft: "4px" }}>Recommendations</span></span></React.Fragment>}
-                            // hideLabel
-                            onChange={(value, id) => this.processFilterCheckBoxes(value, id)} // Receives three arguments: true/false, the checkbox's id, and the dom event.
-                            wrapperClassName="checkboxWrapper"
-                        />
-                        <ReactTooltip id="filterRecommendationTip" place="top" effect="solid">
-                            Filter by Recommendations
-                        </ReactTooltip>
-                    </span>
-                </div>
-                <div className="countItem" role="status" style={{ paddingTop: "0", paddingBottom: "0", height: "34px", textAlign: "right", overflow: "visible" }}>
-                    {/* <span className="summaryBarCounts" style={{ fontWeight: 400 }}>{noScan ? ((bDiff ? counts.filtered["All"] + "/" : "") + counts.total["All"]) : " "}&nbsp;Issues&nbsp;{(bDiff ? "selected" : "found")}</span> */}
-                    <span className="summaryBarCounts" style={{ fontWeight: 400, lineHeight: "32px" }}>{!noScan ? "Not Scanned" : (this.props.scanning ? "Scanning..." : ((bDiff ? counts.filtered["All"] + "/" : "") + counts.total["All"] + " Issues " + (bDiff ? "selected" : "found")))}</span>
+                {/* Counts row uses same code for both Assessment and Checker Tabs */}
+                <div className="countRow summary mainPanel" role="region" arial-label='Issue count' style={{ marginTop: "14px" }}>
+                    <div className="countItem" style={{ paddingTop: "0", paddingLeft: "0", paddingBottom: "0", height: "34px", textAlign: "left", overflow: "visible" }}>
+                        <span data-tip data-for="filterViolationsTip" style={{ display: "inline-block", verticalAlign: "middle", paddingTop: "4px", paddingRight: "8px" }}>
+                            <Checkbox 
+                                className="checkboxLabel"
+                                disabled={!this.props.counts}
+                                // title="Filter violations" // used react tooltip so all tooltips the same
+                                aria-label="Filter by violations"
+                                defaultChecked
+                                id="Violations"
+                                indeterminate={false}
+                                labelText={<React.Fragment><img src={Violation16} style={{ verticalAlign: "middle", paddingTop: "0px", marginRight: "4px" }} alt="Violations" /><span className="summaryBarCounts" >{noScan ? ((bDiff ? counts.filtered["Violation"] + "/" : "") + counts.total["Violation"]) : " "}<span className={(this.props.layout==="sub" ? "summaryBarLabelsSub" : "summaryBarLabelsMain")} style={{ marginLeft: "4px" }}>Violations</span></span></React.Fragment>}
+                                // hideLabel
+                                onChange={(value, id) => this.processFilterCheckBoxes(value, id)} // Receives three arguments: true/false, the checkbox's id, and the dom event.
+                                wrapperClassName="checkboxWrapper"
+                            />
+                            <ReactTooltip id="filterViolationsTip" place="top" effect="solid">
+                                Filter by Violations
+                            </ReactTooltip>
+                        </span>
+                    </div>
+                    
+                    <div className="countItem" style={{ paddingTop: "0", paddingLeft: "0", paddingBottom: "0", height: "34px", textAlign: "left", overflow: "visible" }}>
+                        <span data-tip data-for="filterNeedsReviewTip" style={{ display: "inline-block", verticalAlign: "middle", paddingTop: "4px", paddingRight: "8px" }}>
+                            <Checkbox
+                                className="checkboxLabel"
+                                disabled={!this.props.counts}
+                                // title="Filter needs review"
+                                aria-label="Filter by needs review"
+                                defaultChecked
+                                id="NeedsReview"
+                                indeterminate={false}
+                                labelText={<React.Fragment><img src={NeedsReview16} style={{ verticalAlign: "middle", paddingTop: "0px", marginRight: "4px" }} alt="Needs review" /><span className="summaryBarCounts" >{noScan ? ((bDiff ? counts.filtered["Needs review"] + "/" : "") + counts.total["Needs review"]) : " "}<span className={(this.props.layout==="sub" ? "summaryBarLabelsSub" : "summaryBarLabelsMain")} style={{ marginLeft: "4px" }}>Needs review</span></span></React.Fragment>}
+                                // hideLabel
+                                onChange={(value, id) => this.processFilterCheckBoxes(value, id)} // Receives three arguments: true/false, the checkbox's id, and the dom event.
+                                wrapperClassName="checkboxWrapper"
+                            />
+                            <ReactTooltip id="filterNeedsReviewTip" place="top" effect="solid">
+                                Filter by Needs Review
+                            </ReactTooltip>
+                        </span>
+                    </div>
+                    <div className="countItem" style={{ paddingTop: "0", paddingLeft: "0", paddingBottom: "0", height: "34px", textAlign: "left", overflow: "visible" }}>
+                        <span data-tip data-for="filterRecommendationTip" style={{ display: "inline-block", verticalAlign: "middle", paddingTop: "4px", paddingRight: "8px" }}>
+                            <Checkbox
+                                className="checkboxLabel"
+                                disabled={!this.props.counts}
+                                // title="Filter recommendations"
+                                aria-label="Filter by recommendations"
+                                defaultChecked
+                                id="Recommendations"
+                                indeterminate={false}
+                                labelText={<React.Fragment><img src={Recommendation16} style={{ verticalAlign: "middle", paddingTop: "0px", marginRight: "4px" }} alt="Recommendations" /><span className="summaryBarCounts" >{noScan ? ((bDiff ? counts.filtered["Recommendation"] + "/" : "") + counts.total["Recommendation"]) : " "}<span className={(this.props.layout==="sub" ? "summaryBarLabelsSub" : "summaryBarLabelsMain")} style={{ marginLeft: "4px" }}>Recommendations</span></span></React.Fragment>}
+                                // hideLabel
+                                onChange={(value, id) => this.processFilterCheckBoxes(value, id)} // Receives three arguments: true/false, the checkbox's id, and the dom event.
+                                wrapperClassName="checkboxWrapper"
+                            />
+                            <ReactTooltip id="filterRecommendationTip" place="top" effect="solid">
+                                Filter by Recommendations
+                            </ReactTooltip>
+                        </span>
+                    </div>
+                    <div className="countItem" role="status" style={{ paddingTop: "0", paddingBottom: "0", height: "34px", textAlign: "right", overflow: "visible" }}>
+                        {/* <span className="summaryBarCounts" style={{ fontWeight: 400 }}>{noScan ? ((bDiff ? counts.filtered["All"] + "/" : "") + counts.total["All"]) : " "}&nbsp;Issues&nbsp;{(bDiff ? "selected" : "found")}</span> */}
+                        <span className="summaryBarCounts" style={{ fontWeight: 400, lineHeight: "32px" }}>{!noScan ? "Not Scanned" : (this.props.scanning ? "Scanning..." : ((bDiff ? counts.filtered["All"] + "/" : "") + counts.total["All"] + " Issues " + (bDiff ? "selected" : "found")))}</span>
+                    </div>
                 </div>
             </div>
-            
-        </div>);
+        
+        </div>); // end of headerContent
 
-        if (this.props.layout === "main") {
+        if (this.props.layout === "main") { // Checker Tab
             return <div className="fixed-header"
                 style={{ zIndex: 1000, backgroundColor: "rgba(255, 255, 255, 1)", width: "50%" }}>
                 {headerContent}
             </div>
-        } else {
-            return <div className="fixed-header" style={{ zIndex: 1000, backgroundColor: "rgba(255, 255, 255, 1)", width: "100%" }}>
+        } else { // Assessment Tab
+            return <div className="fixed-header" 
+                style={{ zIndex: 1000, backgroundColor: "rgba(255, 255, 255, 1)", width: "100%" }}>
                 {headerContent}
             </div>
         }
