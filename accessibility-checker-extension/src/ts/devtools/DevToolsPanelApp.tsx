@@ -499,7 +499,7 @@ export default class DevToolsPanelApp extends React.Component<IPanelProps, IPane
         //     return {storedScanData: prevState.storedScanData + currentScanData.length}
         // });
 
-        
+        console.log("report.option = ", report.option);
 
         // Data to store for the Scan other than the issues not much data so saved in state memory
         let currentScan = {
