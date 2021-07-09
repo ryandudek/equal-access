@@ -29,6 +29,8 @@ const BeeLogo = "/assets/BE_for_Accessibility_darker.svg";
 import Violation16 from "../../assets/Violation16.svg";
 import NeedsReview16 from "../../assets/NeedsReview16.svg";
 import Recommendation16 from "../../assets/Recommendation16.svg";
+import PanelMessaging from '../util/panelMessaging';
+
 
 const { prefix } = settings;
 interface IHeaderState {
@@ -37,6 +39,9 @@ interface IHeaderState {
  }
 
 interface IHeaderProps {
+    tabURL: string,
+    tabId: number,
+    tabTitle: string,
     layout: "main" | "sub",
     startScan: () => void,
     collapseAll: () => void,
@@ -176,7 +181,62 @@ export default class Header extends React.Component<IHeaderProps, IHeaderState> 
         });
     }
 
+//--------------------------------------------------------------
 
+// Main Method
+draw(){
+    this.insertSVGIntoBody()
+    this.redraw()
+}
+
+// On page resize
+// window.addEventListener('resize',function(){
+//     this.clearLines(".deleteMe");
+//     this.redraw();
+// })
+
+// TODO think about adding event listener for onTab 
+
+redraw(){
+    setTimeout(()=>{
+        let nodes = this.getNodesToDrawBettween()
+        for(let i = 0; i < nodes.length; i++){    
+            let centerX1 = nodes[i].getBoundingClientRect().x + nodes[i].getBoundingClientRect().width/2
+            let centerY1 = nodes[i].getBoundingClientRect().y + nodes[i].getBoundingClientRect().height/2
+    
+            let centerX2 = nodes[i+1].getBoundingClientRect().x + nodes[i+1].getBoundingClientRect().width/2
+            let centerY2 = nodes[i+1].getBoundingClientRect().y + nodes[i+1].getBoundingClientRect().height/2
+    
+            // console.log(pt1.top, pt1.right, pt1.bottom, pt1.left);
+            this.makeLine(centerX1, centerY1, centerX2, centerY2)
+        }
+    }, 1)
+}
+
+// clearLines(classToRemove){
+//     document.querySelectorAll(classToRemove).forEach(e => e.remove());
+// }
+
+makeLine(x1:number,y1:number, x2:number, y2:number){
+    // TODO make a circle and then draw line
+    let line = document.getElementsByClassName('original')[0]
+    var lineClone = line.cloneNode(true);
+    (lineClone as HTMLElement).classList.add("deleteMe");
+    (lineClone as HTMLElement).setAttribute('x1',x1.toString());
+    (lineClone as HTMLElement).setAttribute('y1',y1.toString());
+    (lineClone as HTMLElement).setAttribute('x2',x2.toString());
+    (lineClone as HTMLElement).setAttribute('y2',y2.toString());
+    document.getElementById('svg')?.appendChild(lineClone);
+}
+
+insertSVGIntoBody(){
+    document.body.innerHTML += '<svg id="svg"><line id="line" class="line   original" stroke-dasharray="5, 5"/></svg>'
+}
+
+getNodesToDrawBettween(){ // Replace for isTabbable later TODO ask Tom if the return value if isTabbale ordered correctly for drawing 
+    return document.querySelectorAll("a")
+}
+//--------------------------------------------------------------
 
     render() {
         let counts = this.props.counts;
@@ -401,6 +461,10 @@ export default class Header extends React.Component<IHeaderProps, IHeaderState> 
                         </div>
                     </div>
                 </div>
+
+                    {/* <Button disabled={this.props.scanning} renderIcon={Renew16} onClick={this.props.startScan.bind(this)} size="small" className="scan-button">Scan</Button> */}
+                    <br></br>            
+                    <Button size="small" className="AlisTest" onClick={PanelMessaging.sendToBackground("DRAW_TABSTOPS",{ tabId: this.props.tabId, tabURL: this.props.tabURL, origin: this.props.layout })} >Draw Tabs</Button>
                 </React.Fragment>
                 // Content for the Assessment Tab
                 :

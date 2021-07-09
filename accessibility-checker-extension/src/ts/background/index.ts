@@ -172,6 +172,30 @@ BackgroundMessaging.addListener("DAP_Rulesets", async (message: any) => {
     });
 });
 
+// BackgroundMessaging.addListener("DRAW_TABSTOPS", async (_message: any) => { 
+//     return await new Promise((resolve, reject) => {
+//         //@ts-ignore
+//         // chrome.tabs.captureVisibleTab(null, {}, function (image:string) {
+//         //     resolve(image);
+//         //     reject(new Error("Capture failed"));
+//         // });
+//         alert("ALiWAShere")
+//         return true;
+
+//     });
+// });
+
+BackgroundMessaging.addListener("DRAW_TABSTOPS", async (message: any) => {
+    return await new Promise((resolve, _reject) => {
+        chrome.tabs.get(message.tabId, async function (tab: any) {
+            //chrome.tabs.get({ 'active': true, 'lastFocusedWindow': true }, async function (tabs) {
+            alert("ALiWAShere")
+            resolve(tab);
+        });
+    });
+});
+
+
 
 // TODO: TAB: I broke this in making sure to not change all panels. Need to revisit
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
