@@ -1009,6 +1009,9 @@ export default class DevToolsPanelApp extends React.Component<IPanelProps, IPane
                         focusedViewText={this.state.focusedViewText}
                         getCurrentSelectedElement={this.getCurrentSelectedElement.bind(this)}
                         readOptionsData={this.readOptionsData.bind(this)}
+                        tabURL={this.state.tabURL}
+                        tabId={this.state.tabId}
+                        tabTitle={this.state.tabTitle}
                     />
                     <div style={{overflowY:"scroll", height:"100%"}}>
                         <div style={{ marginTop: "8rem", height: "calc(100% - 8rem)" }}>

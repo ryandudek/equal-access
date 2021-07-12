@@ -185,16 +185,33 @@ BackgroundMessaging.addListener("DAP_Rulesets", async (message: any) => {
 //     });
 // });
 
-BackgroundMessaging.addListener("DRAW_TABSTOPS", async (message: any) => {
-    return await new Promise((resolve, _reject) => {
-        chrome.tabs.get(message.tabId, async function (tab: any) {
-            //chrome.tabs.get({ 'active': true, 'lastFocusedWindow': true }, async function (tabs) {
-            alert("ALiWAShere")
-            resolve(tab);
-        });
-    });
-});
+// BackgroundMessaging.addListener("DRAW_TABSTOPS", async (message: any) => {
+//     return await new Promise((resolve, _reject) => {
+//         chrome.tabs.get(message.tabId, async function (tab: any) {
+//             //chrome.tabs.get({ 'active': true, 'lastFocusedWindow': true }, async function (tabs) {
+//             alert("ALiWAShere")
+//             resolve(tab);
+//         });
+//     });
+// });
 
+BackgroundMessaging.addListener("DRAW_TABSTOPS", async (message: any) => {
+    try {
+        // BackgroundMessaging.sendToPanel("DRAW_TABSTOPS_COMPLETE", message);
+        await BackgroundMessaging.sendToTab(message.tabId, "DAP_CACHED_TAB", { tabId: message.tabId, tabURL: message.tabURL, origin: message.origin });
+        alert("ALiWAShere1")
+        return true
+        // if (message.archiveId && message.policyId) {
+        //     let browser = (navigator.userAgent.match(/\) ([^)]*)$/) || ["", "Unknown"])[1];
+        //     let totalTime = (message.report != undefined)? message.report.totalTime: message.totalTime;
+        //     metrics.profileV2(totalTime, browser, message.policyId);
+        //     metrics.sendLogsV2();
+        // }
+    } catch (err) {
+        console.error(err);
+    }
+    return true;
+});
 
 
 // TODO: TAB: I broke this in making sure to not change all panels. Need to revisit
